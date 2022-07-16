@@ -1,4 +1,5 @@
-READABLE_CHOICES = ["rock (r)", "paper (p)", "scissors (sc)", "lizard (l)", "spock (sp)"]
+READABLE_CHOICES = ["rock (r)", "paper (p)",
+                    "scissors (sc)", "lizard (l)", "spock (sp)"]
 VALID_CHOICES = {
   r: "rock",
   p: "paper",
@@ -16,17 +17,44 @@ def prompt(message)
   puts "=> #{message}"
 end
 
+def first_rock(second)
+  second == "scissors" ||
+    second == "lizard"
+end
+
+def first_paper(second)
+  second == "rock" ||
+    second == "spock"
+end
+
+def first_scissors(second)
+  second == "paper" ||
+    second == "lizard"
+end
+
+def first_lizard(second)
+  second == "paper" ||
+    second == "spock"
+end
+
+def first_spock(second)
+  second == "rock" ||
+    second == "scissors"
+end
+
 def win?(first, second)
-  (first == "rock" && second == "scissors") ||
-    (first == "rock" && second == "lizard") ||
-    (first == "scissors" && second == "paper") ||
-    (first == "scissors" && second == "lizard") ||
-    (first == "paper" && second == "rock") ||
-    (first == "paper" && second == "spock") ||
-    (first == "lizard" && second == "paper") ||
-    (first == "lizard" && second == "spock") ||
-    (first == "spock" && second == "rock") ||
-    (first == "spock" && second == "scissors")
+  case first
+  when "rock"
+    first_rock(second)
+  when "paper"
+    first_paper(second)
+  when "scissors"
+    first_scissors(second)
+  when "lizard"
+    first_lizard(second)
+  when "spock"
+    first_spock(second)
+  end
 end
 
 def increment_score(winner, p_score, c_score)
@@ -34,16 +62,14 @@ def increment_score(winner, p_score, c_score)
     p_score << "1"
   elsif winner == "computer"
     c_score << "1"
-  else
-    return
   end
 end
 
 def round_results(player, computer)
   if win?(player, computer)
-   "player"
+    "player"
   elsif win?(computer, player)
-   "computer"
+    "computer"
   else
     "tie"
   end
@@ -91,7 +117,8 @@ loop do
 
   computer_choice = VALID_CHOICES.to_a.sample
 
-  prompt("You chose: #{VALID_CHOICES[choice.to_sym]}; Computer chose: #{computer_choice[1]}")
+  prompt("You chose: #{VALID_CHOICES[choice.to_sym]}")
+  prompt("Computer chose: #{computer_choice[1]}")
 
   round_winner = round_results(VALID_CHOICES[choice.to_sym], computer_choice[1])
 
