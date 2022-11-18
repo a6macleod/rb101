@@ -1,8 +1,9 @@
 def factors(number)
   divisor = number
   factors = []
-  loop do
-    break if divisor <= 0
+  # loop do
+    # break if divisor <= 0
+  while divisor > 0
     factors << number / divisor if number % divisor == 0
     divisor -= 1
   end

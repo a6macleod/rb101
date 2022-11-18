@@ -57,7 +57,7 @@ def computer_places_piece!(brd)
   # offense
   if !square
     WINNING_LINES.each do |line|
-      square = computer_best_choice(line, brd, PLAYER_MARKER)
+      square = computer_best_choice(line, brd, COMPUTER_MARKER)
       break if square
     end
   end
@@ -65,7 +65,7 @@ def computer_places_piece!(brd)
   # defense
   if !square
     WINNING_LINES.each do |line|
-      square = computer_best_choice(line, brd, COMPUTER_MARKER)
+      square = computer_best_choice(line, brd, PLAYER_MARKER)
       break if square
     end
   end
@@ -112,9 +112,9 @@ end
 
 def alternate_player(current_player)
   if current_player == COMPUTER_MARKER
-    current_player = PLAYER_MARKER
+    PLAYER_MARKER
   else
-    current_player = COMPUTER_MARKER
+    COMPUTER_MARKER
   end
 end
 
@@ -174,7 +174,7 @@ loop do
   if someone_won?(board)
     player_score += 1 if detect_winner(board) == 'Player'
     computer_score += 1 if detect_winner(board) == 'Computer'
-    display_board(board)
+
     prompt "#{detect_winner(board)} has won!"
   else
     prompt "Its a tie!"

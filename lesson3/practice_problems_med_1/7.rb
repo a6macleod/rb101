@@ -15,4 +15,4 @@ end
 
 mess_with_demographics(munsters)
 p munsters
-# Yes, their info did get messed up because the method uses element assignment #{}= a method that will mutate the caller
+# Yes, their info did get messed up because the method uses element assignment #[]= a method that will mutate the caller

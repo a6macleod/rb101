@@ -3,7 +3,7 @@ numbers.uniq
 
 puts numbers
 
-# I would expect the following to pring
+# I would expect the following to print
 # 1
 # 2
 # 2

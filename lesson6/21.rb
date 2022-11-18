@@ -3,6 +3,7 @@ require 'pry'
 CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'j', 'q', 'k', 'a']
 SUIT = ['h', 'd', 'c', 's']
 MAX_SCORE = 21
+MIN_STAY_SCORE = 17
 ROUNDS = 5
 
 def prompt(msg)
@@ -78,7 +79,7 @@ def display_current_status(player, dealer)
   display_score "Dealer has: #{display_name(dealer[:hand][0][1])} and ?"
   puts ''
   display_score "You have: #{display_hand(player)}"
-  display_score "Your score: (#{calculate_score(player)})"
+  display_score "Your score: (#{player[:score]})"
   puts ''
 end
 
@@ -179,7 +180,7 @@ loop do
 
   unless bust?(player)
     loop do
-      break if dealer[:score] >= 17 || bust?(dealer)
+      break if dealer[:score] >= MIN_STAY_SCORE || bust?(dealer)
       deal_cards(deck, dealer, 1)
     end
   end

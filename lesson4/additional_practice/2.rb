@@ -6,3 +6,5 @@ ages.each do |name, age|
   combined_ages += age
 end
 p combined_ages
+
+p ages.values.reduce(:+)

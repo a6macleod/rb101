@@ -42,14 +42,19 @@ def valid_number?(number)
 end
 
 def invalid_input
+  system 'clear'
   puts "\n=> Please enter a positive number only."
   puts "=> Do not include any symobols.\n"
 end
 
-puts "=> Car Loan Calculator!"
-puts "=> Calculate your monthly payments"
+def greeting
+  system 'clear'
+  puts "=> Car Loan Calculator!"
+  puts "=> Calculate your monthly payments"
+end
 
 loop do
+  greeting
   principle = nil
   loop do
     puts "\nPlease enter the loan amount:"
@@ -60,7 +65,9 @@ loop do
 
   yearly_interest = nil
   loop do
-    puts "\nPlease enter the annual percentage rate (APR):"
+    greeting
+    puts "\nPlease enter the annual percentage rate (APR)"
+    puts "(Example enter 5 for 5%):"
     yearly_interest = gets.chomp
     break if valid_number?(yearly_interest)
     invalid_input()
@@ -68,6 +75,7 @@ loop do
 
   annual_loan_duration = nil
   loop do
+    greeting
     puts "\nPlease enter the length of the loan (in years):"
     annual_loan_duration = gets.chomp
     break if valid_number?(annual_loan_duration)
@@ -85,6 +93,7 @@ loop do
     calculate_total_payment(monthly_payment, months)
     .round(2)
 
+  greeting
   puts "\n=> Monthly payment: $#{monthly_payment}"
   puts "=> Principle: $#{principle.to_f.round(2)}"
   puts "=> APR: #{yearly_interest}%"

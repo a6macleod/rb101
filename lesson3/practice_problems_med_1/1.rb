@@ -1,4 +1,4 @@
-string = "The Flintstones Rock"
+string = "The Flintstones Rock!"
 counter = 0
 
 loop do
